@@ -18,10 +18,10 @@ export default async function Page({ params }: PageProps<"/post/[slug]">) {
   if (!post) notFound();
   return (
     <article className="mx-auto max-w-[760px] px-5 py-12">
-      <p className="text-[13px] text-ink-light">{new Date(post.date + "T12:00:00").toLocaleDateString("en-US", { dateStyle: "long" })}</p>
-      <h1 className="heading mt-1 text-[36px] leading-tight">{post.title}</h1>
+      <p className="text-[13.5px] text-ink-light">{new Date(post.date + "T12:00:00").toLocaleDateString("en-US", { dateStyle: "long" })}</p>
+      <h1 className="heading mt-1 text-[34px] leading-tight">{post.title}</h1>
       <div className="mt-6 aspect-[16/9]"><Scene seed={post.scene} kind="land" /></div>
-      <div className="mt-6 space-y-4 text-[16px] leading-relaxed">
+      <div className="mt-6 space-y-4 text-[17px] leading-relaxed">
         {post.body.map((b) => (
           <div key={b.text}>
             {b.heading && <h2 className="heading mb-1 mt-6 text-[25px]">{b.heading}</h2>}

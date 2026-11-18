@@ -52,13 +52,13 @@ export default async function Page({ params }: PageProps<"/builders/[slug]">) {
           <SectionHeading title={`About ${b.name}`} />
           <ul className="mx-auto mt-8 grid max-w-[760px] grid-cols-2 gap-6 text-center sm:grid-cols-4">
             {facts.map(([icon, label]) => (
-              <li key={label} className="font-nav text-[16px] leading-tight text-brand-blue">
+              <li key={label} className="font-nav text-[17px] leading-tight text-brand-blue">
                 <div className="mx-auto mb-2 h-[80px] w-[80px] text-brand-green">{icon}</div>
                 {label}
               </li>
             ))}
           </ul>
-          <div className="mx-auto mt-8 max-w-[820px] space-y-4 text-[14.5px]">{b.about.map((p) => <p key={p}>{p}</p>)}</div>
+          <div className="mx-auto mt-8 max-w-[820px] space-y-4 text-[15px]">{b.about.map((p) => <p key={p}>{p}</p>)}</div>
         </div>
       </section>
       <section id="questions" className="container-site scroll-mt-6 py-12">

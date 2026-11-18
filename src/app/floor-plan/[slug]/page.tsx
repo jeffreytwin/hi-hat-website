@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HomeDetail } from "@/components/HomeDetail";
 import { MemberGate } from "@/components/MemberGate";
@@ -14,28 +13,31 @@ export default async function Page({ params }: PageProps<"/floor-plan/[slug]">) 
   const plan = await getFloorPlan(slug);
   if (!plan) notFound();
   const [member, names] = await Promise.all([getMember(), getNameMaps()]);
-  const hood = names.neighborhoods[plan.neighborhood];
-  const builder = names.builders[plan.builder];
-  const badges = ["New Construction", ...(plan.quickMoveIn ? ["Quick Move-In"] : [])];
+  const neighborhood = { slug: plan.neighborhood, name: names.neighborhoods[plan.neighborhood] };
+  const builder = { slug: plan.builder, name: names.builders[plan.builder] };
+  const shared = {
+    kind: "floor-plan" as const,
+    price: plan.price,
+    pricePrefix: plan.quickMoveIn ? undefined : "From",
+    beds: plan.beds,
+    baths: plan.baths,
+    sqft: plan.sqft,
+    garage: plan.garage,
+    status: plan.quickMoveIn ? "Quick move-in home · New construction" : "New construction · To be built",
+    neighborhood,
+    scene: plan.scene,
+  };
 
   if (!member) {
     return (
       <MemberGate locked next={`/floor-plan/${slug}`} what="This Property">
         <HomeDetail
-          kind="floor-plan"
-          title={`Floor plan in ${hood}`}
-          pricePrefix="From"
-          price={plan.price}
-          beds={plan.beds}
-          baths={plan.baths}
-          sqft={plan.sqft}
-          garage={plan.garage}
-          facts={[["Neighborhood", hood], ["Home Type", plan.homeType], ["Details", "Members only"]]}
+          {...shared}
+          full={false}
+          title={`Floor plan in ${neighborhood.name}`}
+          facts={[["Neighborhood", neighborhood.name], ["Home Type", plan.homeType], ["Details", "Members only"]]}
           description="Sign in to see the full description, floor plan and details for this home."
           features={["Members only", "Members only", "Members only", "Members only"]}
-          badges={badges}
-          scene={plan.scene}
-          showForm={false}
         />
       </MemberGate>
     );
@@ -43,26 +45,19 @@ export default async function Page({ params }: PageProps<"/floor-plan/[slug]">) 
 
   return (
     <HomeDetail
-      kind="floor-plan"
+      {...shared}
       title={plan.name}
-      subtitle={plan.address ? `Quick move-in home at ${plan.address}` : `by ${builder}`}
-      pricePrefix={plan.quickMoveIn ? undefined : "From"}
-      price={plan.price}
-      beds={plan.beds}
-      baths={plan.baths}
-      sqft={plan.sqft}
-      garage={plan.garage}
+      subtitle={plan.address ? `Quick move-in home at ${plan.address}, by ${builder.name}` : `by ${builder.name}`}
+      builder={builder}
       facts={[
-        ["Builder", <Link key="b" className="underline" href={`/builders/${plan.builder}`}>{builder}</Link>],
-        ["Neighborhood", <Link key="n" className="underline" href={`/neighborhood/${plan.neighborhood}`}>{hood}</Link>],
+        ["Builder", builder.name],
+        ["Neighborhood", neighborhood.name],
         ["Home Type", plan.homeType],
         ["Stories", plan.stories],
         ...(plan.virtualTourUrl ? [["Virtual Tour", "Available on request"] as [string, string]] : []),
       ]}
       description={plan.description}
       features={plan.features}
-      badges={badges}
-      scene={plan.scene}
     />
   );
 }

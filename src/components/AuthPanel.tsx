@@ -40,7 +40,7 @@ export function AuthPanel({ next, what = "This Property", socialError = false }:
       <div className="mx-auto max-w-[300px] text-center">
         <h2 className="heading text-[27px] leading-tight">Sign Up or Log In Below To View {what}</h2>
         {socialError && (
-          <p role="alert" className="mt-3 text-[13px] text-red-700">
+          <p role="alert" className="mt-3 text-[13.5px] text-red-700">
             Social sign-in isn&rsquo;t available right now. Please use your email instead.
           </p>
         )}
@@ -48,13 +48,13 @@ export function AuthPanel({ next, what = "This Property", socialError = false }:
           <input type="hidden" name="next" value={next} />
           <input className="field !h-[42px] placeholder:text-brand-blue" name="email" type="email" placeholder="Email" aria-label="Email" autoComplete="email" required />
           <input className="field !h-[42px] placeholder:text-brand-blue" name="password" type="password" placeholder="Password" aria-label="Password" autoComplete="current-password" minLength={8} required />
-          {state.error && <p role="alert" className="text-[13px] text-red-700">{state.error}</p>}
-          {state.notice && <p role="status" className="text-[13px] text-brand-green-dark">{state.notice}</p>}
+          {state.error && <p role="alert" className="text-[13.5px] text-red-700">{state.error}</p>}
+          {state.notice && <p role="status" className="text-[13.5px] text-brand-green-dark">{state.notice}</p>}
           <button className="btn w-full !py-3 !text-[15px]" disabled={pending}>
             {pending ? "One moment..." : "Sign Up / Login"}
           </button>
         </form>
-        <p className="mt-4 font-nav text-[13px]">
+        <p className="mt-4 font-nav text-[13.5px]">
           Have a Google or Facebook account?{" "}
           <button className="cursor-pointer font-medium underline" onClick={() => setMode("social")}>Log In</button>
         </p>
@@ -65,7 +65,7 @@ export function AuthPanel({ next, what = "This Property", socialError = false }:
   return (
     <div className="text-center">
       <h2 className="heading text-[27px] leading-tight">Log In Below To View {what}</h2>
-      <p className="mx-auto mt-4 max-w-[360px] text-[14.5px] font-bold leading-snug text-brand-green">
+      <p className="mx-auto mt-4 max-w-[360px] text-[15px] font-bold leading-snug text-brand-green">
         Get exclusive insider info from {site.community}&rsquo;s #1 resource for real estate and
         new build properties
       </p>
@@ -77,10 +77,10 @@ export function AuthPanel({ next, what = "This Property", socialError = false }:
       </ul>
       <form action={signInWithProvider} className="mx-auto mt-6 max-w-[300px] space-y-4">
         <input type="hidden" name="next" value={next} />
-        <button name="provider" value="google" className="flex h-12 w-full cursor-pointer items-center gap-3 border border-neutral-300 bg-white px-4 text-[16px] text-black hover:bg-neutral-50">
+        <button name="provider" value="google" className="flex h-12 w-full cursor-pointer items-center gap-3 border border-neutral-300 bg-white px-4 text-[17px] text-black hover:bg-neutral-50">
           <GoogleMark /><span className="flex-1">Log in with Google</span>
         </button>
-        <button name="provider" value="facebook" className="flex h-12 w-full cursor-pointer items-center gap-3 bg-[#1877f2] px-4 text-[16px] text-white hover:bg-[#1568d8]">
+        <button name="provider" value="facebook" className="flex h-12 w-full cursor-pointer items-center gap-3 bg-[#1877f2] px-4 text-[17px] text-white hover:bg-[#1568d8]">
           <FacebookMark /><span className="flex-1">Log in with Facebook</span>
         </button>
       </form>

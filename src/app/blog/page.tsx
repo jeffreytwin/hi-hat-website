@@ -13,7 +13,7 @@ export default async function Page() {
   const posts = await getPosts();
   return (
     <section className="container-site py-12">
-      <h1 className="display text-center text-[28px] text-brand-blue sm:text-[34px]">All Posts</h1>
+      <h1 className="display text-center text-[26px] text-brand-blue sm:text-[34px]">All Posts</h1>
       <ul className="mt-8 space-y-6">
         {posts.map((p) => (
           <li key={p.slug}>
@@ -21,8 +21,8 @@ export default async function Page() {
               <div className="aspect-[4/3] sm:aspect-auto"><Scene seed={p.scene} kind="land" /></div>
               <div className="p-6">
                 <p className="text-[12.5px] text-ink-light">{new Date(p.date + "T12:00:00").toLocaleDateString("en-US", { dateStyle: "long" })}</p>
-                <h2 className="heading mt-1 text-[24px] leading-tight">{p.title}</h2>
-                <p className="mt-2 text-[14px]">{p.excerpt}</p>
+                <h2 className="heading mt-1 text-[25px] leading-tight">{p.title}</h2>
+                <p className="mt-2 text-[15px]">{p.excerpt}</p>
               </div>
             </Link>
           </li>

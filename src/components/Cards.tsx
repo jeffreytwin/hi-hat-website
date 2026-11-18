@@ -112,7 +112,7 @@ export function NeighborhoodCompareCard({ n }: { n: Neighborhood }) {
     <article className="relative flex flex-col bg-white shadow-[0_2px_10px_rgb(0_0_0/0.18)] transition hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgb(0_0_0/0.22)]">
       <div className="relative aspect-[3/2]">
         <Scene seed={n.scene} kind={n.scene % 2 ? "aerial" : "land"} />
-        <span className="absolute left-0 top-3 bg-brand-green px-3 py-0.5 font-heading text-[13px] font-bold text-white">{n.status}</span>
+        <span className="absolute left-0 top-3 bg-brand-green px-3 py-0.5 font-heading text-[13.5px] font-bold text-white">{n.status}</span>
       </div>
       <div className="flex flex-1 flex-col px-4 pb-4 pt-2">
         <h3 className="font-nav text-[19px] font-medium text-brand-blue">{n.name}</h3>
@@ -129,7 +129,7 @@ export function NeighborhoodCompareCard({ n }: { n: Neighborhood }) {
           })}
         </ul>
         <div className="mt-auto flex items-end justify-between gap-2 pt-4">
-          <p className="font-nav text-[14px] leading-tight">
+          <p className="font-nav text-[15px] leading-tight">
             Homes from:
             <span className="block font-heading text-[19px] font-bold text-brand-blue">{priceRangeLabel(n.priceMin, n.priceMax)}</span>
           </p>

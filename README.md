@@ -53,14 +53,20 @@ offering Google, Facebook, or a combined email + password "Sign Up / Login" (exi
 are logged in, new ones are created). The server sends no listing details until the visitor is
 signed in.
 
-To turn on real accounts:
+Accounts and leads live in the Supabase project `hi-hat-website`. Its URL and publishable key
+are public values and are committed in `.env.production`; local development (`npm run dev`)
+does not read that file, so it stays in preview mode unless you add a `.env.local`.
 
-1. Create a Supabase project and set `NEXT_PUBLIC_SUPABASE_URL` and
-   `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
-2. Run `supabase/migrations/0001_members_and_leads.sql` (creates the `leads` table).
-3. In Supabase Auth: turn **off** "Confirm email" for instant access (as on the Wix sites), add
-   the site URL plus `/auth/callback` to the redirect URLs, and enable the Google and Facebook
-   providers with their OAuth credentials.
+Settings that have to be made in the Supabase dashboard (Authentication):
+
+1. **URL Configuration** — set Site URL to the live site and add `<site>/auth/callback` to the
+   redirect URLs.
+2. **Sign In / Providers > Email** — turn off "Confirm email" for instant access, as on the Wix
+   sites. If it stays on, new members must click an emailed link first.
+3. **Providers** — enable Google and Facebook with their OAuth credentials. Until then those
+   two buttons fall back to the email form.
+
+The database schema is in `supabase/migrations/`.
 
 ## Leads
 

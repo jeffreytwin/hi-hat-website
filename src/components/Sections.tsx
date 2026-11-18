@@ -55,7 +55,7 @@ export function SectionHeading({
         </div>
       )}
       <h2 className={`heading text-[27px] ${light ? "!text-white" : ""}`}>{title}</h2>
-      {sub && <p className={`mt-1 text-[16px] ${light ? "text-white" : ""}`}>{sub}</p>}
+      {sub && <p className={`mx-auto mt-1 max-w-[760px] font-nav text-[17px] ${light ? "text-white" : ""}`}>{sub}</p>}
     </div>
   );
 }

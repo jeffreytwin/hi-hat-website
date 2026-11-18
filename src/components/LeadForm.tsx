@@ -62,7 +62,7 @@ export function LeadForm({ source, submitLabel = "Submit", timeline = false, lig
         <span className={label}>Message (optional)</span>
         <textarea className="field" name="message" placeholder={messagePlaceholder} />
       </label>
-      {state.error && <p role="alert" className={`sm:col-span-2 text-[14px] ${light ? "text-white" : "text-red-700"}`}>{state.error}</p>}
+      {state.error && <p role="alert" className={`sm:col-span-2 text-[15px] ${light ? "text-white" : "text-red-700"}`}>{state.error}</p>}
       <div className="sm:col-span-2 text-center">
         <button className="btn" disabled={pending}>{pending ? "Sending..." : submitLabel}</button>
       </div>

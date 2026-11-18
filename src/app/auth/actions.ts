@@ -8,6 +8,12 @@ import { createClient, supabaseConfigured } from "@/lib/supabase/server";
 
 export type AuthState = { error?: string; notice?: string };
 
+async function callbackUrl(next: string) {
+  const h = await headers();
+  const origin = `${h.get("x-forwarded-proto") ?? "http"}://${h.get("host")}`;
+  return `${origin}/auth/callback?next=${encodeURIComponent(next)}`;
+}
+
 /**
  * One form for both cases, like the "Sign Up / Login" button on our other
  * sites: log in if the account exists, otherwise create it.
@@ -30,7 +36,11 @@ export async function signUpOrLogin(_: AuthState, form: FormData): Promise<AuthS
   const login = await supabase.auth.signInWithPassword({ email, password });
   if (!login.error) redirect(next);
 
-  const signup = await supabase.auth.signUp({ email, password });
+  const signup = await supabase.auth.signUp({
+    email,
+    password,
+    options: { emailRedirectTo: await callbackUrl(next) },
+  });
   if (signup.error) {
     return {
       error: /registered|exists/i.test(signup.error.message)
@@ -59,12 +69,10 @@ export async function signInWithProvider(form: FormData) {
     redirect(`/login?next=${encodeURIComponent(next)}&error=social`);
   }
 
-  const h = await headers();
-  const origin = `${h.get("x-forwarded-proto") ?? "http"}://${h.get("host")}`;
   const supabase = await createClient();
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
-    options: { redirectTo: `${origin}/auth/callback?next=${encodeURIComponent(next)}` },
+    options: { redirectTo: await callbackUrl(next) },
   });
   if (error || !data.url) redirect(`/login?next=${encodeURIComponent(next)}&error=social`);
   redirect(data.url);

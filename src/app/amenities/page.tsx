@@ -43,7 +43,7 @@ export default async function Page() {
           </div>
           <ul className="grid grid-cols-3 gap-x-4 gap-y-7 sm:grid-cols-5">
             {AMENITIES.map(([key, label]) => (
-              <li key={key} className="text-center font-nav text-[13px] leading-tight text-brand-blue">
+              <li key={key} className="text-center font-nav text-[13.5px] leading-tight text-brand-blue">
                 <AmenityIcon name={key} className="mx-auto mb-1 h-12 w-12 text-brand-green" />
                 {label}
               </li>

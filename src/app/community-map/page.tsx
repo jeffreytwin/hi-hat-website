@@ -54,7 +54,7 @@ export default async function Page() {
             <li key={n.slug}><Link className="underline" href={`/neighborhood/${n.slug}`}>{n.name}</Link></li>
           ))}
         </ul>
-        <p className="mt-8 text-center font-nav text-[16px]">
+        <p className="mt-8 text-center font-nav text-[17px]">
           When you&rsquo;re ready, explore the available{" "}
           <Link className="text-brand-blue underline" href="/homes-for-sale">homes for sale in {site.community}</Link>, including several{" "}
           <Link className="text-brand-blue underline" href="/build-your-home">new home builds</Link>.

@@ -27,15 +27,15 @@ export default function Page() {
         <LeadForm source="contact" timeline />
         <div className="space-y-6 font-nav text-[15px]">
           <div>
-            <h2 className="heading text-[22px]">Address</h2>
+            <h2 className="heading text-[21px]">Address</h2>
             <p>{agent.brokerage}<br />{agent.address}</p>
           </div>
           <div>
-            <h2 className="heading text-[22px]">Office Phone</h2>
+            <h2 className="heading text-[21px]">Office Phone</h2>
             <p><a className="underline" href={agent.phoneHref}>{agent.phone}</a></p>
           </div>
           <div>
-            <h2 className="heading text-[22px]">Our Office Hours</h2>
+            <h2 className="heading text-[21px]">Our Office Hours</h2>
             <dl>
               {site.hours.map(([d, h]) => (
                 <div key={d} className="flex justify-between gap-6 border-b border-neutral-200 py-1"><dt>{d}</dt><dd>{h}</dd></div>
@@ -49,14 +49,14 @@ export default function Page() {
           <h2 className="heading text-center text-[27px]">Our Team</h2>
           <ul className="mt-6 grid gap-5 sm:grid-cols-3">
             {site.team.map((m) => (
-              <li key={m.name} className="card p-6 text-center font-nav text-[14.5px]">
-                <div aria-hidden="true" className="mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-brand-blue to-brand-green font-heading text-[28px] font-bold text-white">
+              <li key={m.name} className="card p-6 text-center font-nav text-[15px]">
+                <div aria-hidden="true" className="mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-brand-blue to-brand-green font-heading text-[27px] font-bold text-white">
                   {m.name.split(" ").map((w) => w[0]).join("")}
                 </div>
                 <h3 className="heading text-[21px]">{m.name}</h3>
                 <p>Realtor (licensed in Florida)</p>
                 <p><a className="underline" href={`tel:${m.phone.replace(/\D/g, "")}`}>{m.phone}</a></p>
-                <p className="mt-2 text-[13px]">{agent.brokerage}<br />{agent.address}</p>
+                <p className="mt-2 text-[13.5px]">{agent.brokerage}<br />{agent.address}</p>
               </li>
             ))}
           </ul>

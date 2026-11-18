@@ -19,7 +19,7 @@ function Select({ label, value, onChange, options, light }: {
   return (
     <div>
       <label htmlFor={id} className={`field-label ${light ? "text-white" : "text-brand-green"}`}>{label}</label>
-      <select id={id} className="field !h-[30px] !text-[13px]" value={value} onChange={(e) => onChange(e.target.value)}>
+      <select id={id} className="field field-sm" value={value} onChange={(e) => onChange(e.target.value)}>
         <option>{ALL}</option>
         {options.map((o) => {
           const [v, l] = typeof o === "string" ? [o, o] : o;
@@ -30,11 +30,10 @@ function Select({ label, value, onChange, options, light }: {
   );
 }
 
-function FilterGrid({ children, wide }: { children: ReactNode; wide?: boolean }) {
+/** Every filter bar on the site uses this same two-column grid and dropdown size. */
+function FilterGrid({ children }: { children: ReactNode }) {
   return (
-    <div className={`mx-auto mt-6 grid gap-x-10 gap-y-4 sm:grid-cols-2 ${wide ? "max-w-[830px]" : "max-w-[560px]"}`}>
-      {children}
-    </div>
+    <div className="mx-auto mt-6 grid max-w-[640px] gap-x-10 gap-y-4 sm:grid-cols-2">{children}</div>
   );
 }
 
@@ -110,13 +109,13 @@ export function FloorPlanBrowser({ plans, names, neighborhoodAmenities = {}, fil
 
   return (
     <>
-      <FilterGrid wide={filters.length > 4}>
+      <FilterGrid>
         {filters.map((k) => controls[k])}
         <div>
           <span className={`field-label ${light ? "text-white" : "text-brand-green"}`} title="Homes that are finished or under construction and can close soon">
             Quick Move-In Homes
           </span>
-          <label className={`flex h-[30px] items-center gap-3 font-nav text-[14px] ${light ? "text-white" : ""}`}>
+          <label className={`flex h-[34px] items-center gap-3 font-nav text-[15px] ${light ? "text-white" : ""}`}>
             <input type="checkbox" className="h-[18px] w-[18px]" checked={qmi} onChange={(e) => setQmi(e.target.checked)} />
             See Quick Move-Ins Only
           </label>
@@ -176,7 +175,7 @@ export function ListingBrowser({ listings, names, neighborhoodAmenityLabels, fil
     neighborhood: <Select key="neighborhood" light={light} label="Neighborhood" value={f.neighborhood} onChange={set("neighborhood")} options={uniqueSorted(listings.map((l) => l.neighborhood)).map((n) => [n, names.neighborhoods[n]])} />,
   };
 
-  const filterGrid = <FilterGrid wide={filters.length > 4}>{filters.map((k) => controls[k])}</FilterGrid>;
+  const filterGrid = <FilterGrid>{filters.map((k) => controls[k])}</FilterGrid>;
   const results = (
     <Results
       key={JSON.stringify(f)}
@@ -232,7 +231,7 @@ export function NeighborhoodBrowser({ neighborhoods, facets, full = false }: {
 
   return (
     <>
-      <FilterGrid wide={full}>
+      <FilterGrid>
         {!full && <Select label="Amenities" value={f.amenity} onChange={set("amenity")} options={AMENITIES.map(([k, l]) => [k, l])} />}
         <Select label="Price Range" value={f.price} onChange={set("price")} options={PRICE_BUCKETS.filter((b) => neighborhoods.some((n) => rangeInBucket(n.priceMin, n.priceMax, b)))} />
         {full && (

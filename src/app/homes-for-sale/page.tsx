@@ -16,7 +16,7 @@ export default async function Page() {
     <>
       <section className="grid sm:grid-cols-2">
         <div className="flex flex-col justify-center px-8 py-14 text-center">
-          <h1 className="display text-[26px] text-brand-blue sm:text-[32px]">Homes for Sale In {site.community}</h1>
+          <h1 className="display text-[26px] text-brand-blue sm:text-[34px]">Homes for Sale In {site.community}</h1>
           <p className="mx-auto mt-4 max-w-[380px] font-nav text-[17px]">
             Discover the newest homes in one of Southwest Florida&rsquo;s most anticipated
             master-planned communities.
@@ -36,8 +36,8 @@ export default async function Page() {
         bandHeading={
           <>
             <div className="mx-auto mb-2 h-20 w-20 text-white"><PinIcon /></div>
-            <h2 className="heading text-center text-[29px] !text-white">Find Homes for Sale in {site.community} Florida</h2>
-            <p className="text-center text-[16px] text-white">Use the filters below to narrow down your search:</p>
+            <h2 className="heading text-center text-[27px] !text-white">Find Homes for Sale in {site.community} Florida</h2>
+            <p className="text-center font-nav text-[17px] text-white">Use the filters below to narrow down your search:</p>
           </>
         }
       />

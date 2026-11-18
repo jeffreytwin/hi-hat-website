@@ -23,12 +23,12 @@ export default function Page() {
         <div className="container-site grid items-start gap-10 lg:grid-cols-2">
           <div className="text-white">
             <p className="font-nav text-[19px] uppercase tracking-wide">Start your home search right.</p>
-            <h1 className="display mt-2 text-[30px] sm:text-[40px]">Connect with a {site.community} Realtor</h1>
+            <h1 className="display mt-2 text-[26px] sm:text-[34px]">Connect with a {site.community} Realtor</h1>
             <dl className="mt-8 space-y-5">
               {POINTS.map(([t, d]) => (
                 <div key={t}>
-                  <dt className="heading text-[22px] !text-white">{t}</dt>
-                  <dd className="text-[14.5px]">{d}</dd>
+                  <dt className="heading text-[21px] !text-white">{t}</dt>
+                  <dd className="text-[15px]">{d}</dd>
                 </div>
               ))}
             </dl>
